@@ -109,7 +109,7 @@ public class ServidorPassaRepassa {
         }
         
         private void rodada(PrintWriter outAtivo, BufferedReader inAtivo, PrintWriter outOponente, BufferedReader inOponente, Pergunta p, String nomeAtivo, int idAtivo) throws IOException {
-            outAtivo.println("JOGAR:Sua vez! Envie 'RESPONDER - Opção X' ou 'PASSA'.");
+            outAtivo.println("JOGAR:Sua vez! Envie 'RESPONDER - N°' ou 'PASSA'.");
             outOponente.println("AGUARDE:Aguarde a jogada de " + nomeAtivo + ".");
             
             String resposta = inAtivo.readLine();
@@ -121,7 +121,7 @@ public class ServidorPassaRepassa {
                 processarResposta(p, opcao, idAtivo, 5, -5); // Resposta de primeira
             } else if (comando.equals("PASSA")) {
                 enviarParaAmbos("MSG:" + nomeAtivo + " passou a vez!");
-                outOponente.println("JOGAR:A pergunta foi passada para você! Envie 'RESPONDER - Opção X' ou 'REPASSA'.");
+                outOponente.println("JOGAR:A pergunta foi passada para você! Envie 'RESPONDER - N°' ou 'REPASSA'.");
                 outAtivo.println("AGUARDE:Você passou. Aguarde a jogada do oponente.");
 
                 String respOponente = inOponente.readLine();
@@ -133,7 +133,7 @@ public class ServidorPassaRepassa {
                     processarResposta(p, opcao, (idAtivo == 1 ? 2 : 1), 7, -5); // Resposta a um PASSA
                 } else if (comando.equals("REPASSA")) {
                     enviarParaAmbos("MSG:A pergunta foi REPASSADA! " + nomeAtivo + " deve responder.");
-                    outAtivo.println("JOGAR:Você é obrigado a responder! 'RESPONDER - Opção X'.");
+                    outAtivo.println("JOGAR:Você é obrigado a responder! 'RESPONDER - N°'.");
                     outOponente.println("AGUARDE:Oponente repassou. Aguarde a resposta.");
                     
                     String respostaFinal = inAtivo.readLine();
